@@ -1,0 +1,73 @@
+package week2.day2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Checkbox {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		
+		ChromeDriver d=new ChromeDriver();
+		d.get("https://www.leafground.com/checkbox.xhtml");
+		d.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement ch1=d.findElement(By.xpath("//div[@id='j_idt87:j_idt89']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+		ch1.click();
+		WebElement ch2=d.findElement(By.xpath("//div[@id='j_idt87:j_idt91']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+		ch2.click();
+		WebElement ch3=d.findElement(By.xpath("//div[@class='ui-growl-message']//span[@class='ui-growl-title']"));
+		String s3=ch3.getText();
+		System.out.println(s3);
+		ch2.click();
+
+		//Thread.sleep(4000);
+		//faced stale element reference: stale element not found error, so i declared the webelement again
+	
+		//WebElement ch4=d.findElement(By.xpath("//div[@class='ui-growl-message']//span[@class='ui-growl-title']"));
+		//String s4=ch4.getText();
+		//System.out.println(s4);
+		
+		WebElement ch4=d.findElement(By.xpath("(//div[@class='ui-chkbox ui-widget']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default'])[1]"));
+		ch4.click();
+		WebElement ch5=d.findElement(By.xpath("(//div[@class='ui-chkbox ui-widget']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default'])[2]"));
+		ch5.click();
+		
+		WebElement tristate=d.findElement(By.xpath("//div[@id='j_idt87:ajaxTriState']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+		tristate.click();
+		WebElement tristate1=d.findElement(By.xpath("//div[@id='j_idt87:ajaxTriState']"));
+		
+		Boolean s2=tristate1.isSelected();
+		System.out.println(s2); //---to be cleared
+		if(s2.equals(true))
+	    {System.out.println("Tristate is enabled");
+		}
+		else {
+			System.out.println("Tristate is notenabled");
+		}
+		
+		WebElement toggle=d.findElement(By.xpath("//div[@id='j_idt87:j_idt100']//div[@class='ui-toggleswitch-slider']"));
+		toggle.click();
+		WebElement disab=d.findElement(By.xpath("//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-disabled ui-state-disabled']"));
+		Boolean s4=disab.isSelected();
+		System.out.println("Verify if check box is disabled "+s4);
+		
+		WebElement multiple=d.findElement(By.id("j_idt87:multiple"));
+		multiple.click();
+		WebElement list1=d.findElement(By.xpath("//li[@data-item-value='Miami']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+		list1.click();
+
+		WebElement list2=d.findElement(By.xpath("//li[@data-item-value='London']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+		list2.click();
+		
+		multiple.click();
+		
+		d.quit();
+		
+	}
+	
+	
+
+}
