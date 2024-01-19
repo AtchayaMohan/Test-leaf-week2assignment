@@ -1,0 +1,59 @@
+package week2.day2;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Radiobutton {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+		ChromeDriver d=new ChromeDriver();
+		d.get("https://www.leafground.com/radio.xhtml");
+		d.manage().window().maximize();
+		
+		WebElement favb=d.findElement(By.xpath("//table[@id='j_idt87:console1']//div[@class='ui-radiobutton ui-widget']"));
+		favb.click();
+		
+		WebElement unselect=d.findElement(By.xpath("(//div[@class='ui-g-12 ui-md-4']//div[@class='ui-radiobutton ui-widget'])[2]"));
+		unselect.click();
+		Thread.sleep(2000);
+		unselect.click();
+		Boolean b1=unselect.isSelected();
+		if(b1!=true)
+		{
+			System.out.println("radio button is unselected");
+			
+			
+		}
+		else
+		{
+			System.out.println("radio button is selected");
+		}
+		List<WebElement> default1=d.findElements(By.xpath("//div[@id='j_idt87:age']//div[@class='ui-g-12 ui-md-4']"));
+		for(WebElement e:default1)
+		{
+			if(!e.isSelected())
+			{
+				e.click();
+				
+			}
+			
+			
+		
+		}
+		WebElement w1=d.findElement(By.xpath("(//div[@class='ui-radiobutton ui-widget']//input[@name='j_idt87:console2'])[2]"));
+		Boolean s4=w1.isEnabled();
+		if(s4!=true)
+		{
+			System.out.println("selected");
+		}
+		
+		
+		
+	
+	}
+
+}
