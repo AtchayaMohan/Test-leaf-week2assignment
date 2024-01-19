@@ -1,0 +1,66 @@
+package week2.day2;
+
+import java.awt.Point;
+
+import javax.swing.text.Position;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Button {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ChromeDriver d=new ChromeDriver();
+		d.get("https://www.leafground.com/button.xhtml");
+		d.manage().window().maximize();
+		
+		WebElement b1=d.findElement(By.id("j_idt88:j_idt90"));	
+		b1.click();
+		String s1=d.getTitle();
+	
+		if(s1.equals("Dashboard"))
+		{
+			
+			System.out.println("Title matches");}
+		
+		else {
+			System.out.println("Title is not matched");
+		}
+       d.navigate().back();
+       
+       WebElement b2=d.findElement(By.id("j_idt88:j_idt92"));
+       Boolean chk=b2.isEnabled();
+      
+       if(chk.equals(true))
+       {
+    	   System.out.println("button is enabled");
+    	   
+       }
+       else
+       {
+    	   System.out.println("button is disabled");
+       }
+       
+       WebElement b3=d.findElement(By.id("j_idt88:j_idt94"));
+       org.openqa.selenium.Point p1=b3.getLocation();
+       System.out.println("Poistion : x-  "+p1.getX()+" y-  "+p1.getY());
+    
+       WebElement b5=d.findElement(By.id("j_idt88:j_idt96"));
+       String color1=b5.getCssValue("background-color");
+       System.out.println(color1);
+       
+       WebElement b4=d.findElement(By.id("j_idt88:j_idt98"));
+       Dimension p=b4.getSize();
+      System.out.println("Hieght is "+p.getHeight());
+      System.out.println("Width is"+p.getWidth());
+       
+       d.quit();
+	}
+
+	
+	
+}
