@@ -1,0 +1,58 @@
+package week2.day2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Editlead {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       ChromeDriver d=new ChromeDriver();
+       
+       
+       d.get("http://leaftaps.com/opentaps/control/main");
+       d.manage().window().maximize();
+       d.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+       d.findElement(By.id("username")).sendKeys("DemoSalesManager");
+       d.findElement(By.id("password")).sendKeys("crmsfa");
+       d.findElement(By.className("decorativeSubmit")).click();
+       d.findElement(By.className("crmsfa")).click();
+       d.findElement(By.linkText("Leads")).click();
+       d.findElement(By.linkText("Create Lead")).click();
+       d.findElement(By.xpath("//input[@id='createLeadForm_companyName']")).sendKeys("Test Leaf");
+       d.findElement(By.xpath("//input[@id='createLeadForm_firstName']")).sendKeys("Atchaya");
+       d.findElement(By.xpath("//input[@id='createLeadForm_lastName']")).sendKeys("Mohan");
+       d.findElement(By.xpath("//tr//input[@name='departmentName']")).sendKeys("IT");
+       d.findElement(By.xpath("//input[@name='firstNameLocal']")).sendKeys("Atchaya Mohan");
+     WebElement description=  d.findElement(By.xpath("//textarea[@name='description']"));
+     description.sendKeys("Creating first lead here.............");
+       d.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("xyz@gmail.com");
+       WebElement state=d.findElement(By.xpath("//Select[@name='generalStateProvinceGeoId']"));
+       Select s=new Select(state);
+       s.selectByValue("NY");
+       d.findElement(By.xpath("//input[@class='smallSubmit']")).click();
+       d.findElement(By.linkText("Edit")).click();
+       WebElement description1=  d.findElement(By.xpath("//textarea[@name='description']"));
+       description1.clear();
+       d.findElement(By.xpath("//textarea[@name='importantNote']")).sendKeys("writing important notes.........");
+     // d.findElement(By.className("allSubSectionBlocks")).click();
+       d.findElement(By.xpath("//input[@value='Update']")).click();
+       String s1=d.getTitle();
+       System.out.println(s1+" is the title of page");
+       d.quit();
+       
+       
+       
+      
+       
+       
+       
+       
+       
+	}
+
+}
